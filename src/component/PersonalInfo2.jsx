@@ -66,7 +66,7 @@ export default function PersonalInfo2({ data, setData, next,back }) {
       </div>
 
       {/* State & Country */}
-      <div className="grid grid-cols-2 gap-4">
+      <div className="grid grid-cols-2 gap-4 ">
         <div>
           <label className="block text-sm text-white/70 mb-2">
             Next of Kin
@@ -118,7 +118,7 @@ export default function PersonalInfo2({ data, setData, next,back }) {
             <h1>Fill the complete form</h1>:
              <button
           onClick={next}
-          className="px-8 py-2 rounded-full bg-gradient-to-r from-[#02275A] via-[#0494FC] to-[#FCB709] text-white font-medium shadow-lg hover:opacity-90 transition"
+          className="px-8 py-2 rounded-full bg-linear-to-r from-[#02275A] via-[#0494FC] to-[#FCB709] text-white font-medium shadow-lg hover:opacity-90 transition"
         >
           Continue
         </button>

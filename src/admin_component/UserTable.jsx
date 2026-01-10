@@ -107,6 +107,10 @@ export default function UserTable({ users }) {
                   <th className="p-3">Date of Birth</th>
                   <th className="p-3">Gender</th>
                   <th className="p-3">Investment Level</th>
+                  <th className="p-3">Bank Name</th>
+                  <th className="p-3">Account Name</th>
+                  <th className="p-3">Account Number</th>
+                  <th className="p-3">Educational Qualification</th>
                   <th className="p-3 text-right">Actions</th>
                 </tr>
               </thead>
@@ -124,6 +128,11 @@ export default function UserTable({ users }) {
                       <td className="p-3">{u.date_of_birth}</td>
                       <td className="p-3">{u.gender}</td>
                       <td className="p-3">{u.investment_level}</td>
+                      <td className="p-3">{u.bank_name}</td>
+                      <td className="p-3">{u.account_name}</td>
+                      <td className="p-3">{u.account_number}</td>
+                      <td className="p-3">{u.edu_qualification}</td>
+                      
                       
                     
                       <td className="p-3 text-right">

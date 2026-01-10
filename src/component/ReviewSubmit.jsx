@@ -2,9 +2,31 @@ import { useState } from "react";
 import { api } from "../../api";
 import { BarLoader } from "react-spinners";
 
-export default function ReviewSubmit({ data, back }) {
+export default function ReviewSubmit({ data, back,setData }) {
    const [loading, setLoading] = useState(false);
    const [sub,setSub]=useState(false)
+   const [privacycheck, setPrivacycheck]=useState(false)
+   const [readMore,setReadMore]=useState(false)
+
+  console.log("Review Data",data)
+
+   const privacyTest=`
+            I hereby consent to the collection, verification, 
+            and use of my Know Your Customer (KYC) information, 
+            including but not limited to my identity documents, proof 
+            of address, and financial information for the purpose of 
+            compliance with regulatory requirements, customer 
+            identification, and management of my investment portfolio. 
+            I understand that my KYC data will be handled securely and 
+            will not be shared with third parties except as required by 
+            law or with my explicit consent. Kakulus Capital Limited is 
+            hereby committed to protecting your personal data and preserving 
+            the confidentiality of information provided. Your personal data 
+            through this medium will be used for account opening and 
+            other lawful processing in line the applicable data protection 
+            regulations. By signing below, you are consenting to the processing 
+            of your personal data in line with the Company’s Privacy Policy.
+            `
 
     console.log("ReviewSubmit data:", data);
     const sendUserData = async () => {
@@ -82,8 +104,39 @@ export default function ReviewSubmit({ data, back }) {
         )}
       </div>
 
+      {/* confirm privacy */}
+      <div className="flex gap-[20px]">
+        <input 
+    
+        type="checkbox" 
+        checked={data?.privacy ==="true"}
+        value={privacycheck}
+        onChange={(e)=>{
+            setPrivacycheck(!privacycheck)
+            setData({ ...data, privacy: e.target.value })
+        }}
+        />
+
+    <div className="flex ">
+        <p>
+          {
+            readMore===false> 200 ? privacyTest.slice(0,200):
+            privacyTest
+          }
+          <span onClick={()=>setReadMore(!readMore)} className="ml-12.5 text-[blue]">
+            {
+              readMore ===false?"Read More...":
+              "Read Less"
+            }
+            
+          </span>
+        </p>
+    </div>
+        
+      </div>
+
       {/* Actions */}
-      <div className="flex justify-between pt-4">
+      <div className="flex justify-between gap-12.5 pt-4">
         <button
           onClick={back}
           className="px-6 py-2 rounded-full border border-white/30 text-white/70 hover:text-white hover:border-white transition"
@@ -91,12 +144,19 @@ export default function ReviewSubmit({ data, back }) {
           Back
         </button>
 
-        <button
+
+        {
+          data.privacy === "false" ? 
+            "Please Check The box to accept consent":
+          <button
           onClick={sendUserData}
-          className="px-8 py-2 rounded-full bg-gradient-to-r from-[#02275A] via-[#0494FC] to-[#FCB709] text-white font-medium shadow-lg hover:opacity-90 transition"
+          className="px-8 py-2 rounded-full bg-linear-to-r from-[#02275A] via-[#0494FC] to-[#FCB709] text-white font-medium shadow-lg hover:opacity-90 transition"
         >
           Submit
         </button>
+          
+        }
+        
       </div>
 
       <div className="flex flex-col justify-center items-center">

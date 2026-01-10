@@ -1,13 +1,5 @@
 export default function ProfilePicture({ data, setData }) {
 
-//   const fileToByteString = (file) => {
-//   return new Promise((resolve, reject) => {
-//     const reader = new FileReader();
-//     reader.onload = () => resolve(reader.result); // base64 string
-//     reader.onerror = reject;
-//     reader.readAsDataURL(file);
-//   });
-// };
 
 
 const fileToByteString = (file, maxSize = 400, quality = 0.6) => {

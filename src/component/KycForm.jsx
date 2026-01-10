@@ -4,9 +4,11 @@ import PersonalInfo2 from "./PersonalInfo2";
 import AddressInfo from "./AddressInfo";
 import InvestmentInfo from "./InvestmentInfo";
 import InvestmentInfo2 from "./InvestmentInfo2";
+import PersonalInfo3 from "./PersonalInfo3";
 import SignatureStep from "./SignatureStep";
 import ReviewSubmit from "./ReviewSubmit";
 import kakulus from "../assets/kakulus.jpeg";
+import BankInfo from "./BankInfo";
 
 export default function KycForm() {
   const [step, setStep] = useState(0);
@@ -15,9 +17,11 @@ export default function KycForm() {
   const steps = [
     { label: "Personal Info", component: PersonalInfo },
     { label: "Personal Info2", component: PersonalInfo2 },
+    { label: "Personal Info3", component: PersonalInfo3 },
     { label: "Address Info", component: AddressInfo },
     { label: "Investment", component: InvestmentInfo },
     { label: "Investment2", component: InvestmentInfo2 },
+    { label: "Bank Info", component: BankInfo },
     { label: "Signature", component: SignatureStep },
     { label: "Review", component: ReviewSubmit }
   ];
@@ -44,10 +48,19 @@ export default function KycForm() {
             Step {step + 1} of {steps.length}
           </p>
 
+          {/* Additionanl info */}
+          {
+            step >0?null:
+            <p>
+            The purpose of this form is to obtain basic information from the prospective client of Kakulus Capital Limited. The information obtained will be used strictly for the purpose of providing investment advisory service and no part of this information will be shared with any third party entity without client's consent. All information obtained will be kept in strict confidence.
+          </p>
+
+          }
+          
           {/* Progress Bar */}
           <div className="w-full bg-white/20 rounded-full h-1.5 mt-4 overflow-hidden">
             <div
-              className="bg-gradient-to-r  from-[#02275A] via-[#0494FC] to-[#FCB709] h-1.5 rounded-full transition-all"
+              className="bg-linear-to-r  from-[#02275A] via-[#0494FC] to-[#FCB709] h-1.5 rounded-full transition-all"
               style={{ width: `${((step + 1) / steps.length) * 100}%` }}
             />
           </div>
