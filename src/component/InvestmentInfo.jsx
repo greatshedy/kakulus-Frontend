@@ -1,43 +1,68 @@
 export default function InvestmentInfo({ data, setData, next, back }) {
+  const investmentOptions = [
+    "Novice",
+    "Semi-aware",
+    "Financially literate",
+    "Sophisticated Investor",
+  ];
+
+  const riskData = [
+    "Zero risk tolerance level",
+    "Low risk appetite",
+    "Medium Risk tolerance",
+    "High risk tolerance level",
+  ];
   return (
     <div className="space-y-6">
-
       {/* Risk Tolerance */}
-      <div>
-        <label className="block text-sm text-white/70 mb-2">
-          Risk Tolerance
-        </label>
-        <select
-          value={data.risk || ""}
-          onChange={(e) =>
-            setData({ ...data, risk: e.target.value })
-          }
-          className="w-full rounded-xl bg-white/20 text-white border border-white/30 px-4 py-3 focus:outline-none focus:ring-2 focus:ring-pink-400"
-        >
-          <option value="" className="text-black">
-            Select risk level
-          </option>
-          <option className="text-black">Low</option>
-          <option className="text-black">Medium</option>
-          <option className="text-black">High</option>
-        </select>
+
+      <div className="flex justify-between">
+        <div>
+          <label className="block text-sm text-white/70 mb-2">
+            Investment Level
+          </label>
+          {investmentOptions.map((option) => {
+            return (
+              <div className="flex gap-[5px]">
+                <input
+                  type="radio"
+                  //   placeholder="John Doe"
+                  name="investment_level"
+                  value={option}
+                  //   value={data.full_name || ""}
+                  onChange={(e) =>
+                    setData({ ...data, investment_level: e.target.value })
+                  }
+                />
+
+                <label>{option}</label>
+              </div>
+            );
+          })}
+        </div>
+
+        <div>
+          <label className="block text-sm text-white/70 mb-2">
+            Risk Tolerance
+          </label>
+          <select
+            value={data.risk || ""}
+            onChange={(e) => setData({ ...data, risk: e.target.value })}
+            className="w-full rounded-xl bg-white/20 text-white border border-white/30 px-4 py-3 focus:outline-none focus:ring-2 focus:ring-pink-400"
+          >
+            <option value="" className="text-black">
+              Select risk level
+            </option>
+             {riskData.map((option) => {
+            return (
+                <option value={option} className="text-black">{option}</option>
+            );
+          })}
+            
+          </select>
+        </div>
       </div>
 
-      {/* Investment Objective */}
-      <div>
-        <label className="block text-sm text-white/70 mb-2">
-          Investment Objective
-        </label>
-        <textarea
-          rows={4}
-          placeholder="Describe your investment goals..."
-          value={data.objective || ""}
-          onChange={(e) =>
-            setData({ ...data, objective: e.target.value })
-          }
-          className="w-full rounded-xl bg-white/20 text-white placeholder-white/40 border border-white/30 px-4 py-3 resize-none focus:outline-none focus:ring-2 focus:ring-pink-400"
-        />
-      </div>
 
       {/* Navigation */}
       <div className="flex justify-between pt-4">
@@ -48,12 +73,17 @@ export default function InvestmentInfo({ data, setData, next, back }) {
           Back
         </button>
 
-        <button
+       {
+            !data.investment_level || !data.risk
+           ?
+            <h1>Fill the complete form</h1>:
+             <button
           onClick={next}
-          className="px-8 py-2 rounded-full bg-gradient-to-r from-pink-500 to-purple-500 text-white font-medium shadow-lg hover:opacity-90 transition"
+          className="px-8 py-2 rounded-full bg-gradient-to-r from-[#02275A] via-[#0494FC] to-[#FCB709] text-white font-medium shadow-lg hover:opacity-90 transition"
         >
           Continue
         </button>
+          }
       </div>
     </div>
   );

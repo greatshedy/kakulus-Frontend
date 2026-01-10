@@ -17,12 +17,25 @@ export default function AddressInfo({ data, setData, next, back }) {
           className="w-full rounded-xl bg-white/20 text-white placeholder-white/40 border border-white/30 px-4 py-3 focus:outline-none focus:ring-2 focus:ring-pink-400"
         />
       </div>
+          {/* Country of Origin */}
+       <div>
+        <label className="block text-sm text-white/70 mb-2">
+          Country of Origin
+        </label>
+        <input
+          type="text"
+          placeholder="Your occupation"
+          value={data.country_of_origin || ""}
+          onChange={(e) => setData({ ...data, country_of_origin: e.target.value })}
+          className="w-full rounded-xl bg-white/20 text-white placeholder-white/40 border border-white/30 px-4 py-3 focus:outline-none focus:ring-2 focus:ring-pink-400"
+        />
+      </div>
 
       {/* State & Country */}
       <div className="grid grid-cols-2 gap-4">
         <div>
           <label className="block text-sm text-white/70 mb-2">
-            State
+            State Of Residence
           </label>
           <input
             type="text"
@@ -37,7 +50,7 @@ export default function AddressInfo({ data, setData, next, back }) {
 
         <div>
           <label className="block text-sm text-white/70 mb-2">
-            Country
+            Country Of Residence
           </label>
           <input
             type="text"
@@ -49,6 +62,9 @@ export default function AddressInfo({ data, setData, next, back }) {
             className="w-full rounded-xl bg-white/20 text-white placeholder-white/40 border border-white/30 px-4 py-3 focus:outline-none focus:ring-2 focus:ring-pink-400"
           />
         </div>
+
+
+       
       </div>
 
       {/* Navigation */}
@@ -60,12 +76,19 @@ export default function AddressInfo({ data, setData, next, back }) {
           Back
         </button>
 
-        <button
+         {
+            !data.country_of_origin || !data.state
+            ||!data.country
+            || !data.address ?
+            <h1>Fill the complete form</h1>:
+             <button
           onClick={next}
-          className="px-8 py-2 rounded-full bg-gradient-to-r from-pink-500 to-purple-500 text-white font-medium shadow-lg hover:opacity-90 transition"
+          className="px-8 py-2 rounded-full bg-gradient-to-r from-[#02275A] via-[#0494FC] to-[#FCB709] text-white font-medium shadow-lg hover:opacity-90 transition"
         >
           Continue
         </button>
+          }
+       
       </div>
     </div>
   );

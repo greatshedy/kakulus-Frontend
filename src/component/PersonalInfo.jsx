@@ -68,12 +68,18 @@ export default function PersonalInfo({ data, setData, next }) {
 
       {/* Continue */}
       <div className="flex justify-end pt-4">
-        <button
+         {
+            !data.full_name || !data.phone
+            ||!data.email||!data.profile_picture
+           ?
+            <h1>Fill the complete form</h1>:
+             <button
           onClick={next}
-          className="px-8 py-2 rounded-full bg-gradient-to-r from-pink-500 to-purple-500 text-white font-medium shadow-lg hover:opacity-90 transition"
+          className="px-8 py-2 rounded-full bg-gradient-to-r from-[#02275A] via-[#0494FC] to-[#FCB709] text-white font-medium shadow-lg hover:opacity-90 transition"
         >
           Continue
         </button>
+          }
       </div>
     </div>
   );

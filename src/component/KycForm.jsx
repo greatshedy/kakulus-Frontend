@@ -3,8 +3,10 @@ import PersonalInfo from "./PersonalInfo";
 import PersonalInfo2 from "./PersonalInfo2";
 import AddressInfo from "./AddressInfo";
 import InvestmentInfo from "./InvestmentInfo";
+import InvestmentInfo2 from "./InvestmentInfo2";
 import SignatureStep from "./SignatureStep";
 import ReviewSubmit from "./ReviewSubmit";
+import kakulus from "../assets/kakulus.jpeg";
 
 export default function KycForm() {
   const [step, setStep] = useState(0);
@@ -15,6 +17,7 @@ export default function KycForm() {
     { label: "Personal Info2", component: PersonalInfo2 },
     { label: "Address Info", component: AddressInfo },
     { label: "Investment", component: InvestmentInfo },
+    { label: "Investment2", component: InvestmentInfo2 },
     { label: "Signature", component: SignatureStep },
     { label: "Review", component: ReviewSubmit }
   ];
@@ -22,29 +25,18 @@ export default function KycForm() {
   const StepComponent = steps[step].component;
 
   return (
-    // <div className="min-h-screen w-[40%] bg-gradient-to-br from-purple-900 via-indigo-900 to-pink-700 flex items-center justify-center px-4">
+   
       
       
       <div className="w-full max-w-md rounded-3xl bg-white/10 backdrop-blur-xl border border-white/20 shadow-2xl p-6 text-white">
 
-        {/* Step Tabs */}
-        {/* <div className="flex justify-between mb-6">
-          {steps.map((s, i) => (
-            <div
-              key={i}
-              className={`text-xs pb-2 border-b-2 transition-all ${
-                i === step
-                  ? "text-pink-400 border-pink-400"
-                  : "text-white/50 border-transparent"
-              }`}
-            >
-              {s.label}
-            </div>
-          ))}
-        </div> */}
 
         {/* Header */}
         <div className="mb-6">
+          <div className="mb-7.5">
+            <img className="h-25 object-cover w-75 mb-2.5 rounded-2xl bg-[red]"  src={kakulus} alt="" />
+            <p>Pathway to Sustainable Wealth</p>
+          </div>
           <h1 className="text-xl font-semibold">
             KYC Verification
           </h1>
@@ -55,7 +47,7 @@ export default function KycForm() {
           {/* Progress Bar */}
           <div className="w-full bg-white/20 rounded-full h-1.5 mt-4 overflow-hidden">
             <div
-              className="bg-gradient-to-r from-pink-400 to-purple-400 h-1.5 rounded-full transition-all"
+              className="bg-gradient-to-r  from-[#02275A] via-[#0494FC] to-[#FCB709] h-1.5 rounded-full transition-all"
               style={{ width: `${((step + 1) / steps.length) * 100}%` }}
             />
           </div>

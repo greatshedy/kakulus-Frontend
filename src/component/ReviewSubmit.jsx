@@ -1,13 +1,26 @@
+import { useState } from "react";
 import { api } from "../../api";
+import { BarLoader } from "react-spinners";
 
 export default function ReviewSubmit({ data, back }) {
+   const [loading, setLoading] = useState(false);
+   const [sub,setSub]=useState(false)
 
     console.log("ReviewSubmit data:", data);
     const sendUserData = async () => {
         try{
             const response =await api.post("/submit_kyc", data);
             console.log("Data submitted successfully:", response.data);
-        }
+            setLoading(true)
+           
+            setTimeout(()=>{
+              setLoading(false)
+              setSub(true)
+            },3000)
+          
+            
+
+          }
         catch(error){
             console.error("Error submitting data:", error);
         }
@@ -69,14 +82,6 @@ export default function ReviewSubmit({ data, back }) {
         )}
       </div>
 
-      {/* Raw JSON (optional dev view) */}
-      <details className="text-xs text-white/40">
-        <summary className="cursor-pointer">View raw data</summary>
-        <pre className="mt-2 bg-black/30 p-3 rounded-lg overflow-auto">
-          {JSON.stringify(data, null, 2)}
-        </pre>
-      </details>
-
       {/* Actions */}
       <div className="flex justify-between pt-4">
         <button
@@ -88,10 +93,25 @@ export default function ReviewSubmit({ data, back }) {
 
         <button
           onClick={sendUserData}
-          className="px-8 py-2 rounded-full bg-gradient-to-r from-pink-500 to-purple-500 text-white font-medium shadow-lg hover:opacity-90 transition"
+          className="px-8 py-2 rounded-full bg-gradient-to-r from-[#02275A] via-[#0494FC] to-[#FCB709] text-white font-medium shadow-lg hover:opacity-90 transition"
         >
           Submit
         </button>
+      </div>
+
+      <div className="flex flex-col justify-center items-center">
+        {
+          loading && (
+            <div className="content-center flex justify-center">
+                <BarLoader color="white"/>
+                
+            </div>
+          )
+        }
+        {
+          sub?<p className="white">Submited</p>:
+          null
+        }
       </div>
     </div>
   );

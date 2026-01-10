@@ -1,5 +1,6 @@
 export default function UserModal({ user, onClose }) {
   if (!user) return null;
+  console.log("modal",user)
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/40 backdrop-blur-sm">
@@ -15,38 +16,62 @@ export default function UserModal({ user, onClose }) {
         </button>
 
         {/* Header */}
-        <div className="flex items-center gap-4 mb-6">
-          <div className="w-16 h-16 rounded-full bg-white/20 overflow-hidden">
+        <div className="flex justify-between gap-4 mb-6">
+          <div className="flex  gap-2 items-center">
+              <div className="w-16 h-16 rounded-full bg-white/20 overflow-hidden">
             {user.profile_picture ? (
-              <img src={user.profile_picture} className="w-full h-full object-cover" />
+              <img src={user.profile_picture.join("")} className="w-full h-full object-cover" />
             ) : (
               <div className="flex items-center justify-center h-full text-xs text-white/60">
                 No Image
               </div>
             )}
           </div>
-
           <div>
-            <h2 className="text-lg font-semibold">{user.name}</h2>
-            <p className="text-xs text-white/60">{user.email}</p>
+            <h2 className="text-lg font-semibold">{user.full_name}</h2>
+            <p className="text-xs text-white/60">{user.country}</p>
           </div>
+        </div>
+          
+
+        <div className="flex mr-10 gap-2 items-center">
+          <div className="w-16 h-16 rounded-full bg-white/20 overflow-hidden">
+            {user.signature ? (
+              <img src={user.signature.join("")} className="w-full h-full object-cover" />
+            ) : (
+              <div className="flex items-center justify-center h-full text-xs text-white/60">
+                No Image
+              </div>
+            )}
+          </div>
+          <div>
+            <h2 className="text-lg font-semibold">{"User Signature"}</h2>
+          </div>
+        </div>
+          
+
+          
         </div>
 
         {/* Details */}
         <div className="grid grid-cols-2 gap-4 text-sm">
-          <Info label="Phone" value={user.phone} />
+          <Info label="Date of Birth" value={user.date_of_birth} />
           <Info label="Risk" value={user.risk} />
-          <Info label="Status" value={user.status} />
-          <Info label="Country" value={user.country} />
+          <Info label="Investment" value={user.current_size_of_investments
+} />
+          <Info label="Country of Origin" value={user.country_of_origin} />
+          <Info label="Country of Investment" value={user.country} />
+          <Info label="Email" value={user.email} />
+          <Info label="Gender" value={user.gender} />
+          <Info label="Investment Object" value={user.investment_Obj} />
+          <Info label="Investment Level" value={user.investment_level} />
+          <Info label="Nature of Existing Inv." value={user.nature_of_existing_investments} />
+          <Info label="Next of Kin" value={user.next_of_kin} />
+          <Info label="Next of Kin Phone Number" value={user.next_of_kin_phone_number} />
+          <Info label="Occupation" value={user.occupation} />
+          <Info label="Phone Number" value={user.phone} />
           <Info label="State" value={user.state} />
-        </div>
 
-        {/* Objective */}
-        <div className="mt-4">
-          <p className="text-xs text-white/60 mb-1">Investment Objective</p>
-          <div className="bg-white/10 rounded-lg p-3 text-sm">
-            {user.objective || "—"}
-          </div>
         </div>
 
       </div>

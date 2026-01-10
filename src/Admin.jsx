@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import StatCard from './admin_component/StatCard';
 import UserTable from './admin_component/UserTable';
 import KycCharts from './admin_component/KycCharts';
@@ -9,18 +9,8 @@ import { Navigate } from 'react-router-dom';
 
 
 const Admin = () => {
-    const users = [
-    { id: 1, name: "John Doe", status: "active", risk: "Low" },
-    { id: 2, name: "Jane Smith", status: "blocked", risk: "High" },
-    { id: 3, name: "Alex Ray", status: "active", risk: "Medium" },
-    { id: 4, name: "John Doe", status: "active", risk: "Low" },
-    { id: 5, name: "Jane Smith", status: "blocked", risk: "High" },
-    { id: 6, name: "Alex Ray", status: "active", risk: "Medium" },
-    { id: 7, name: "John Doe", status: "active", risk: "Low" },
-    { id: 8, name: "Jane Smith", status: "blocked", risk: "High" },
-    { id: 9, name: "Alex Ray", status: "active", risk: "Medium" }
-
-  ];
+  const [user1,setUser1]=useState([])
+  
 
   const FetchData=async()=>{
     const userId=localStorage.getItem("kyc_user_id");
@@ -31,6 +21,7 @@ const Admin = () => {
    
     console.log("Dashboard response:", response);
     if (response.data.status==="success") {
+      setUser1(response.data.kyc_data)
       console.log("Dashboard data:", response);
       console.log("Dashboard data fetched successfully");
     } else {
@@ -57,26 +48,25 @@ const Admin = () => {
     <>
    {
     signedIn ? 
-    <div className="min-h-screen bg-gradient-to-br from-purple-900 via-indigo-900 to-pink-700 p-6 text-white">
+    <div className="min-h-screen bg-linear-to-br from-[#02275A] via-[#0494FC] to-[#FCB709] p-6 text-white">
 
       {/* Header */}
       <div className="flex justify-between items-center mb-6">
         <h1 className="text-2xl font-semibold">Admin Dashboard</h1>
-        <ExportCSVButton users={users} />
+        <ExportCSVButton users={user1} />
       </div>
 
       {/* Stats */}
       <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-6">
-        <StatCard title="Total Kyc data" value={users.length} />
-        {/* <StatCard title="Active Users" value={users.filter(u => u.status === "active").length} />
-        <StatCard title="Blocked Users" value={users.filter(u => u.status === "blocked").length} /> */}
+        <StatCard title="Total Kyc data" value={user1.length} />
+        
       </div>
 
       {/* Charts */}
-      <KycCharts users={users} />
+      <KycCharts users={user1} />
 
       {/* Table */}
-      <UserTable users={users} />
+      <UserTable users={user1} />
     </div>:
     <Navigate to="/admin-login" replace />
    }

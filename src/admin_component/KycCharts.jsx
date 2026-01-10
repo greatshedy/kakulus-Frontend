@@ -4,14 +4,30 @@ import {
 } from "recharts";
 
 export default function KycCharts({ users }) {
-  const riskData = ["Low", "Medium", "High"].map(level => ({
+
+  console
+  const riskData = [ "Zero risk tolerance level",
+    "Low risk appetite",
+    "Medium Risk tolerance",
+    "High risk tolerance level",].map(level => ({
     name: level,
     value: users.filter(u => u.risk === level).length
   }));
 
+
+  
+
+
+
+
+
   const statusData = [
-    { name: "Active", value: users.filter(u => u.status === "active").length },
-    { name: "Blocked", value: users.filter(u => u.status === "blocked").length }
+    { name: "Below N5million", value: users.filter(u => u.current_size_of_investments === "Below N5million").length },
+    { name: "N5million - N20million", value: users.filter(u => u.current_size_of_investments === "N5million - N20million").length },
+    { name: "N20million - N50million", value: users.filter(u => u.current_size_of_investments === "N20million - N50million").length },
+    { name: "N50million - N100million", value: users.filter(u => u.current_size_of_investments === "N50million - N100million").length },
+    { name: "N100million - N200million", value: users.filter(u => u.current_size_of_investments === "N100million - N200million").length },
+    { name: "N200million and above", value: users.filter(u => u.current_size_of_investments === "N200million and above").length }
   ];
 
   const COLORS = ["#c084fc", "#60a5fa", "#f472b6"];
@@ -38,8 +54,12 @@ export default function KycCharts({ users }) {
       <div className="glass-card h-64">
         <p className="text-sm mb-2 text-white/60">User Status</p>
         <ResponsiveContainer>
-          <BarChart data={statusData}>
-            <XAxis dataKey="name" stroke="#fff" />
+          <BarChart data={statusData}
+          barSize={`${100/6}%`}
+          
+          >
+            
+            <XAxis dataKey="name" stroke="#fff"  />
             <YAxis stroke="#fff" />
             <Tooltip />
             <Bar dataKey="value" fill="#60a5fa" radius={[6,6,0,0]} />

@@ -4,10 +4,37 @@ import { useRef } from "react";
 export default function SignaturePad({ data, setData }) {
   const sigRef = useRef(null);
 
-  const save = () => {
-    const img = sigRef.current.toDataURL("image/png");
-    setData({ ...data, signature: img });
-  };
+  // const save = () => {
+  //   const img = sigRef.current.toDataURL("image/png");
+  //   setData({ ...data, signature: img });
+  // };
+
+
+ const save = () => {
+  const canvas = sigRef.current.getCanvas();
+
+  // Create a smaller canvas
+  const scaled = document.createElement("canvas");
+  const scale = 0.5; // 50% size
+  scaled.width = canvas.width * scale;
+  scaled.height = canvas.height * scale;
+
+  const ctx = scaled.getContext("2d");
+
+  // Fill background with transparent or white
+  ctx.fillStyle = "white"; // use "white" if you want white bg, or "rgba(0,0,0,0)" for transparent
+  ctx.fillRect(0, 0, scaled.width, scaled.height);
+
+  // Draw the original signature on top
+  ctx.drawImage(canvas, 0, 0, scaled.width, scaled.height);
+
+  // Convert to compressed JPEG (or PNG if you want transparency)
+  const img = scaled.toDataURL("image/png"); // use "image/jpeg", 0.6 if you want smaller size
+
+  setData({ ...data, signature: img });
+};
+
+
 
   return (
     <div className="space-y-4">
@@ -42,7 +69,7 @@ export default function SignaturePad({ data, setData }) {
         <button
           type="button"
           onClick={save}
-          className="px-6 py-2 rounded-full bg-gradient-to-r from-pink-500 to-purple-500 text-white font-medium shadow-lg hover:opacity-90 transition"
+          className="px-6 py-2 rounded-full bg-gradient-to-r from-[#02275A] via-[#0494FC] to-[#FCB709] text-white font-medium shadow-lg hover:opacity-90 transition"
         >
           Save Signature
         </button>

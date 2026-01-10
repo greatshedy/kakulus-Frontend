@@ -1,16 +1,19 @@
 import { useState } from "react";
 import { api } from "../../api";
-import { replace, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+import { BarLoader } from "react-spinners";
 
 export default function Login() {
   const navigate = useNavigate();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [loading, setLoading] = useState(false);
   const data1 = {
     email: email,
     password: password,
   };
  
+  
 
   const submit =async (e) => {
     e.preventDefault();
@@ -18,16 +21,21 @@ export default function Login() {
 
     const response = await api.post("/login", data1);
     if (response?.data?.status=== "success") {
+      
       console.log("token", response?.data?.token);
       localStorage.setItem("token", response?.data?.token);
-      navigate("/dashboard");
+      setLoading(true);
+      setTimeout(() => {
+        navigate("/dashboard");
+      }, 3000);
+      
     } else {
       console.log("Login failed");
     }
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-[#0f172a] to-[#020617] px-4 text-white">
+    <div className="min-h-screen flex items-center justify-center bg-linear-to-br  from-[#02275A] via-[#0494FC] to-[#FCB709] px-4 text-white">
       <form
         onSubmit={submit}
         className="w-full max-w-md rounded-2xl bg-white/10 backdrop-blur-xl border border-white/20 p-8 space-y-6"
@@ -39,6 +47,8 @@ export default function Login() {
             Enter your email to receive access
           </p>
         </div>
+
+        
 
         {/* Email */}
         <div>
@@ -78,6 +88,15 @@ export default function Login() {
         <p className="text-xs text-center text-white/50">
           Secure admin access only
         </p>
+
+        {
+          loading && (
+            <div className="content-center flex justify-center">
+                <BarLoader color="white"/>
+            </div>
+          )
+        }
+        
       </form>
     </div>
   );
