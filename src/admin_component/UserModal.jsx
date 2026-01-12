@@ -92,7 +92,7 @@ export default function UserModal({ user, onClose }) {
 
 
         {/* Details */}
-        <div className="grid grid-cols-2 gap-4 text-sm">
+        <div className="grid grid-cols-4 gap-4 text-sm">
           <Info label="Date of Birth" value={user.date_of_birth} />
           <Info label="Title" value={user.title} />
           <Info label="Risk" value={user.risk} />

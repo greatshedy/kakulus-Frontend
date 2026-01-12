@@ -43,7 +43,7 @@ export default function ReviewSubmit({ data, back,setData }) {
             },3000)
           
             
-
+            window.location.reload()
           }
         catch(error){
             console.error("Error submitting data:", error);
