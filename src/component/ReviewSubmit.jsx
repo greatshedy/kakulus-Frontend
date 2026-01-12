@@ -7,6 +7,7 @@ export default function ReviewSubmit({ data, back,setData }) {
    const [sub,setSub]=useState(false)
    const [privacycheck, setPrivacycheck]=useState(false)
    const [readMore,setReadMore]=useState(false)
+   const [error,setError]=useState(false)
 
   console.log("Review Data",data)
 
@@ -30,14 +31,15 @@ export default function ReviewSubmit({ data, back,setData }) {
 
     console.log("ReviewSubmit data:", data);
     const sendUserData = async () => {
+      setLoading(true)
         try{
             const response =await api.post("/submit_kyc", data);
             console.log("Data submitted successfully:", response.data);
-            setLoading(true)
-           
+            setError(false)
             setTimeout(()=>{
               setLoading(false)
               setSub(true)
+              
             },3000)
           
             
@@ -45,6 +47,8 @@ export default function ReviewSubmit({ data, back,setData }) {
           }
         catch(error){
             console.error("Error submitting data:", error);
+            setError(true)
+            setLoading(false)
         }
     }
     
@@ -146,7 +150,7 @@ export default function ReviewSubmit({ data, back,setData }) {
 
 
         {
-          data.privacy === "false" ? 
+          data.privacy === "false" || !data.privacy  ? 
             "Please Check The box to accept consent":
           <button
           onClick={sendUserData}
@@ -169,7 +173,13 @@ export default function ReviewSubmit({ data, back,setData }) {
           )
         }
         {
-          sub?<p className="white">Submited</p>:
+          sub?<p className="text-[white]">Submited</p>:
+          null
+        }
+        {
+          error?<p className="text-[red] text-center">
+            There was an Error submitting your file, can you try again.
+          </p>:
           null
         }
       </div>
