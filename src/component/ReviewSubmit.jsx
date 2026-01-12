@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { api } from "../../api";
 import { BarLoader } from "react-spinners";
+import { useNavigate } from "react-router-dom";
 
 export default function ReviewSubmit({ data, back,setData }) {
    const [loading, setLoading] = useState(false);
@@ -8,6 +9,8 @@ export default function ReviewSubmit({ data, back,setData }) {
    const [privacycheck, setPrivacycheck]=useState(false)
    const [readMore,setReadMore]=useState(false)
    const [error,setError]=useState(false)
+
+   const navigate=useNavigate()
 
   console.log("Review Data",data)
 
@@ -43,7 +46,7 @@ export default function ReviewSubmit({ data, back,setData }) {
             },3000)
           
             
-            window.location.reload()
+            navigate("/")
           }
         catch(error){
             console.error("Error submitting data:", error);
