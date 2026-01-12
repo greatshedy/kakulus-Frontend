@@ -42,11 +42,11 @@ export default function ReviewSubmit({ data, back,setData }) {
             setTimeout(()=>{
               setLoading(false)
               setSub(true)
-              
+              window.location.reload()
             },3000)
           
             
-            navigate("/")
+            
           }
         catch(error){
             console.error("Error submitting data:", error);

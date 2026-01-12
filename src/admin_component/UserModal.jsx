@@ -3,9 +3,9 @@ export default function UserModal({ user, onClose }) {
   console.log("modal",user)
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/40 backdrop-blur-sm">
+    <div className="fixed inset-0 z-50  flex items-center justify-center bg-black/40 backdrop-blur-sm">
       
-      <div className="w-full max-w-lg mx-4 rounded-2xl bg-white/15 backdrop-blur-xl border border-white/20 p-6 relative">
+      <div className="overflow-y-scroll w-175 mx-4 h-[80%] rounded-2xl bg-white/15 backdrop-blur-xl border border-white/20 p-6 relative lg:w-200">
 
         {/* Close */}
         <button
@@ -92,7 +92,7 @@ export default function UserModal({ user, onClose }) {
 
 
         {/* Details */}
-        <div className="grid grid-cols-2 gap-4 text-sm lg:grid-cols-4">
+        <div className="grid grid-cols-2 gap-4 text-sm lg:grid-cols-3 ">
           <Info label="Date of Birth" value={user.date_of_birth} />
           <Info label="Title" value={user.title} />
           <Info label="Risk" value={user.risk} />
