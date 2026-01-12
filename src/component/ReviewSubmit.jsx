@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { api } from "../../api";
 import { BarLoader } from "react-spinners";
-import { useNavigate } from "react-router-dom";
+
 
 export default function ReviewSubmit({ data, back,setData }) {
    const [loading, setLoading] = useState(false);
@@ -10,8 +10,7 @@ export default function ReviewSubmit({ data, back,setData }) {
    const [readMore,setReadMore]=useState(false)
    const [error,setError]=useState(false)
 
-   const navigate=useNavigate()
-
+  
   console.log("Review Data",data)
 
    const privacyTest=`
