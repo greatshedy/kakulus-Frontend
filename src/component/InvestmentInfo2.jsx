@@ -207,9 +207,9 @@ export default function InvestmentInfo2({ data, setData, next, back }) {
         </button>
 
          {
-            data.investment_Obj || data.current_source_of_wealth
-            ||data.nature_of_existing_investments
-            || data.current_size_of_investments ?
+            !data.investment_Obj || !data.current_source_of_wealth
+            ||!data.nature_of_existing_investments
+            || !data.current_size_of_investments ?
             <h1>Fill the complete form</h1>:
              <button
           onClick={next}

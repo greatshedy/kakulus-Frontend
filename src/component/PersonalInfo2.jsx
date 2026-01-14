@@ -158,9 +158,9 @@ export default function PersonalInfo2({ data, setData, next,back }) {
 
 
           {
-            data.gender || data.date_of_birth 
-            ||data.next_of_kin_phone_number 
-            || data.next_of_kin ||data.occupation ?
+            !data.gender || !data.date_of_birth 
+            ||!data.next_of_kin_phone_number 
+            || !data.next_of_kin ||!data.occupation ||!data.title ?
             <h1>Fill the complete form</h1>:
              <button
           onClick={next}

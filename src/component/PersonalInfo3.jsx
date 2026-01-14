@@ -163,9 +163,9 @@ export default function PersonalInfo3({ data, setData, next,back }) {
 
 
           {
-            data.title || data.means_of_id 
-            ||data.employer_name 
-            || data.lga_resisdence ||data.edu_qualification ?
+            !data.means_of_id 
+            ||!data.employer_name 
+            || !data.lga_resisdence ||!data.edu_qualification ?
             <h1>Fill the complete form</h1>:
              <button
           onClick={next}

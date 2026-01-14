@@ -59,8 +59,8 @@ export default function BankInfo({ data, setData, next, back }) {
         </button>
 
          {
-            data.account_name || data.account_name
-            ||data.bank_name ?
+            !data.account_name || !data.account_name
+            ||!data.bank_name ?
             <h1>Fill the complete form</h1>:
              <button
           onClick={next}

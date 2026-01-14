@@ -74,7 +74,7 @@ export default function InvestmentInfo({ data, setData, next, back }) {
         </button>
 
        {
-            data.investment_level || data.risk
+            !data.investment_level || !data.risk
            ?
             <h1>Fill the complete form</h1>:
              <button

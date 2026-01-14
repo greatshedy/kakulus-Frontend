@@ -69,8 +69,8 @@ export default function PersonalInfo({ data, setData, next }) {
       {/* Continue */}
       <div className="flex justify-end pt-4">
          {
-            data.full_name || data.phone
-            ||data.email||data.profile_picture
+            !data.full_name || !data.phone
+            ||!data.email||!data.profile_picture
            ?
             <h1>Fill the complete form</h1>:
              <button
