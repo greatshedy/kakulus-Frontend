@@ -17,9 +17,9 @@ export default function KycForm() {
   const steps = [
     { label: "Personal Info", component: PersonalInfo },
     { label: "Personal Info2", component: PersonalInfo2 },
-    { label: "Personal Info3", component: PersonalInfo3 },
     { label: "Address Info", component: AddressInfo },
     { label: "Investment", component: InvestmentInfo },
+    { label: "Personal Info3", component: PersonalInfo3 },
     { label: "Investment2", component: InvestmentInfo2 },
     { label: "Bank Info", component: BankInfo },
     { label: "Signature", component: SignatureStep },

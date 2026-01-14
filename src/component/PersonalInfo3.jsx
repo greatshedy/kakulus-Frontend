@@ -38,51 +38,9 @@ export default function PersonalInfo3({ data, setData, next,back }) {
   ]
   return (
     <div className="space-y-6">
-      <div className="w-full flex justify-between gap-5">
+     
         {/* Title */}
-        <div>
-          <label className="block text-sm text-white/70 mb-2">Title</label>
-
-          <div className="flex gap-1.25">
-            <input
-              type="radio"
-              //   placeholder="John Doe"
-              name="title"
-              value={"Mr"}
-              //   value={data.full_name || ""}
-              onChange={(e) => setData({ ...data, title: e.target.value })}
-            />
-
-            <label>Mr</label>
-          </div>
-
-          <div className="flex gap-[5px]">
-            <input
-              type="radio"
-              //   placeholder="John Doe"
-              name="title"
-              value={"Mrs"}
-              //   value={data.full_name || ""}
-              onChange={(e) => setData({ ...data, title: e.target.value })}
-            />
-
-            <label>Mrs</label>
-          </div>
-
-          <div className="flex gap-[5px]">
-            <input
-              type="radio"
-              //   placeholder="John Doe"
-              name="title"
-              value={"Others"}
-              //   value={data.full_name || ""}
-              onChange={(e) => setData({ ...data, title: e.target.value })}
-            />
-
-            <label>Others</label>
-          </div>
-        </div>
-
+      
         <div>
           {/* Identification */}
           <label className="block text-sm text-white/70 mb-2">
@@ -110,7 +68,7 @@ export default function PersonalInfo3({ data, setData, next,back }) {
             className="w-full rounded-xl bg-white/20 text-white placeholder-white/40 border border-white/30 px-4 py-3 focus:outline-none focus:ring-2 focus:ring-pink-400"
           />
         </div>
-      </div>
+ 
 
       {/* Empoyer Details*/}
 
@@ -205,9 +163,9 @@ export default function PersonalInfo3({ data, setData, next,back }) {
 
 
           {
-            !data.title || !data.means_of_id 
-            ||!data.employer_name 
-            || !data.lga_resisdence ||!data.edu_qualification ?
+            data.title || data.means_of_id 
+            ||data.employer_name 
+            || data.lga_resisdence ||data.edu_qualification ?
             <h1>Fill the complete form</h1>:
              <button
           onClick={next}

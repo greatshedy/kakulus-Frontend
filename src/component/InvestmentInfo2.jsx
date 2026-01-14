@@ -38,87 +38,136 @@ export default function InvestmentInfo2({ data, setData, next, back }) {
     <div className="space-y-6">
       {/* Risk Tolerance */}
 
-      <div className="flex gap-[20px] flex-col lg:flex-row">
-        <div>
-          <label className="block text-sm text-white/70 mb-2">
-            Investment Objective
-          </label>
-          <select
-            value={data.investment_Obj || ""}
-            onChange={(e) =>
-              setData({ ...data, investment_Obj: e.target.value })
-            }
-            className="w-full rounded-xl bg-white/20 text-white border border-white/30 px-4 py-3 focus:outline-none focus:ring-2 focus:ring-pink-400 lg:w-[70%]"
-          >
-            <option value="" className="text-black">
-              Investment Objective
-            </option>
-            {investmentOptions.map((option) => {
-              return (
-                <option value={option} className="text-black">
-                  {option}
-                </option>
-              );
-            })}
-          </select>
-        </div>
+      <div className="flex gap-[20px] flex-col lg:flex-row">  
 
         <div className="w-full lg:w-[50%]">
-          <label className="block text-sm text-white/70 mb-2">
-            Current Source of wealth
-          </label>
-          {current_source_of_wealth.map((option) => {
-            return (
-              <div className="flex gap-[5px]">
-                <input
-                  type="radio"
-                  //   placeholder="John Doe"
-                  name="Current Source of wealth"
-                  value={option}
-                  //   value={data.full_name || ""}
-                  onChange={(e) =>
-                    setData({
-                      ...data,
-                      current_source_of_wealth: e.target.value,
-                    })
-                  }
-                />
+  <label className="block text-sm text-white/70 mb-2">
+    Investment Objective
+  </label>
+  {investmentOptions.map((option) => {
+    const isChecked = data.investment_Obj?.includes(option) || false;
 
-                <label>{option}</label>
-              </div>
-            );
-          })}
-        </div>
+    return (
+      <div className="flex gap-[5px]" key={option}>
+        <input
+          type="checkbox"
+          value={option}
+          checked={isChecked}
+          onChange={(e) => {
+            if (e.target.checked) {
+              // Add to array
+              setData({
+                ...data,
+                investment_Obj: [
+                  ...(data.investment_Obj || []),
+                  option,
+                ],
+              });
+            } else {
+              // Remove from array
+              setData({
+                ...data,
+                investment_Obj: (data.investment_Obj || []).filter(
+                  (item) => item !== option
+                ),
+              });
+            }
+          }}
+        />
+        <label>{option}</label>
       </div>
+    );
+  })}
+</div>
+
+
+        <div className="w-full lg:w-[50%]">
+  <label className="block text-sm text-white/70 mb-2">
+   Current Source of wealth
+  </label>
+  {current_source_of_wealth.map((option) => {
+    const isChecked = data.current_source_of_wealth?.includes(option) || false;
+
+    return (
+      <div className="flex gap-[5px]" key={option}>
+        <input
+          type="checkbox"
+          value={option}
+          checked={isChecked}
+          onChange={(e) => {
+            if (e.target.checked) {
+              // Add to array
+              setData({
+                ...data,
+                current_source_of_wealth: [
+                  ...(data.current_source_of_wealth || []),
+                  option,
+                ],
+              });
+            } else {
+              // Remove from array
+              setData({
+                ...data,
+                current_source_of_wealth: (data.current_source_of_wealth || []).filter(
+                  (item) => item !== option
+                ),
+              });
+            }
+          }}
+        />
+        <label>{option}</label>
+      </div>
+    );
+  })}
+</div>
+
+      </div>
+
+
 
       {/* Risk Tolerance 2 */}
       <div className="flex gap-[20px] flex-col lg:flex-row">
-        <div className="w-full lg:w-[50%]">
-          <label className="block text-sm text-white/70 mb-2">
-            Nature of existing investments
-          </label>
-          {nature_of_existing_investments.map((option) => {
-            return (
-              <div className="flex gap-[5px]">
-                <input
-                  type="radio"
-                  //   placeholder="John Doe"
-                  name="Nature of existing investments"
-                  value={option}
-                  //   value={data.full_name || ""}
-                  onChange={(e) =>
-                    setData({
-                      ...data,
-                      nature_of_existing_investments: e.target.value,
-                    })
-                  }
-                />
+       
 
-                <label>{option}</label>
-              </div>
-            );
-          })}
-        </div>
+          <div className="w-full lg:w-[50%]">
+  <label className="block text-sm text-white/70 mb-2">
+   Nature of existing investments
+  </label>
+  {nature_of_existing_investments.map((option) => {
+    const isChecked = data.nature_of_existing_investments?.includes(option) || false;
+
+    return (
+      <div className="flex gap-[5px]" key={option}>
+        <input
+          type="checkbox"
+          value={option}
+          checked={isChecked}
+          onChange={(e) => {
+            if (e.target.checked) {
+              // Add to array
+              setData({
+                ...data,
+                nature_of_existing_investments: [
+                  ...(data.nature_of_existing_investments || []),
+                  option,
+                ],
+              });
+            } else {
+              // Remove from array
+              setData({
+                ...data,
+                nature_of_existing_investments: (data.nature_of_existing_investments || []).filter(
+                  (item) => item !== option
+                ),
+              });
+            }
+          }}
+        />
+        <label>{option}</label>
+      </div>
+    );
+  })}
+</div>
 
         <div className="w-full lg:w-[50%]">
           <label className="block text-sm text-white/70 mb-2">
@@ -158,9 +207,9 @@ export default function InvestmentInfo2({ data, setData, next, back }) {
         </button>
 
          {
-            !data.investment_Obj || !data.current_source_of_wealth
-            ||!data.nature_of_existing_investments
-            || !data.current_size_of_investments ?
+            data.investment_Obj || data.current_source_of_wealth
+            ||data.nature_of_existing_investments
+            || data.current_size_of_investments ?
             <h1>Fill the complete form</h1>:
              <button
           onClick={next}

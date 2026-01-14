@@ -103,9 +103,9 @@ export default function UserModal({ user, onClose }) {
           <Info label="Gender" value={user.gender} />
           <Info label="Educational Qualififcation" value={user.edu_qualification} />
           <Info label="Employer Name" value={user.employer_name} />
-          <Info label="Investment Object" value={user.investment_Obj} />
+          <Info label="Investment Object" value={user.investment_Obj?.join(",")} />
           <Info label="Investment Level" value={user.investment_level} />
-          <Info label="Nature of Existing Inv." value={user.nature_of_existing_investments} />
+          <Info label="Nature of Existing Inv." value={user.nature_of_existing_investments?.join(",")} />
           <Info label="Next of Kin" value={user.next_of_kin} />
           <Info label="Next of Kin Phone Number" value={user.next_of_kin_phone_number} />
           <Info label="Occupation" value={user.occupation} />

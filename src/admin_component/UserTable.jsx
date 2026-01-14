@@ -124,7 +124,7 @@ export default function UserTable({ users }) {
                       <td className="p-3">{u.full_name}</td>
                       <td className="p-3">{u.risk}</td>
                       <td className="p-3">{u.current_size_of_investments}</td>
-                      <td className="p-3">{u.current_source_of_wealth}</td>
+                      <td className="p-3">{u.current_source_of_wealth?.join(",")}</td>
                       <td className="p-3">{u.date_of_birth}</td>
                       <td className="p-3">{u.gender}</td>
                       <td className="p-3">{u.investment_level}</td>

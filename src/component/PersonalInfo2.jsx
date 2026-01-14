@@ -52,7 +52,51 @@ export default function PersonalInfo2({ data, setData, next,back }) {
       </div>
 
       {/* Occupation*/}
-      <div>
+      <div className="flex  lg:flex-row justify-between">
+        <div>
+          <label className="block text-sm text-white/70 mb-2">Title</label>
+
+          <div className="flex gap-1.25">
+            <input
+              type="radio"
+              //   placeholder="John Doe"
+              name="title"
+              value={"Mr"}
+              //   value={data.full_name || ""}
+              onChange={(e) => setData({ ...data, title: e.target.value })}
+            />
+
+            <label>Mr</label>
+          </div>
+
+          <div className="flex gap-[5px]">
+            <input
+              type="radio"
+              //   placeholder="John Doe"
+              name="title"
+              value={"Mrs"}
+              //   value={data.full_name || ""}
+              onChange={(e) => setData({ ...data, title: e.target.value })}
+            />
+
+            <label>Mrs</label>
+          </div>
+
+          <div className="flex gap-[5px]">
+            <input
+              type="radio"
+              //   placeholder="John Doe"
+              name="title"
+              value={"Others"}
+              //   value={data.full_name || ""}
+              onChange={(e) => setData({ ...data, title: e.target.value })}
+            />
+
+            <label>Others</label>
+          </div>
+        </div>
+
+        <div>
         <label className="block text-sm text-white/70 mb-2">
           Nature of Current Occupation
         </label>
@@ -64,6 +108,8 @@ export default function PersonalInfo2({ data, setData, next,back }) {
           className="w-full rounded-xl bg-white/20 text-white placeholder-white/40 border border-white/30 px-4 py-3 focus:outline-none focus:ring-2 focus:ring-pink-400"
         />
       </div>
+      </div>
+      
 
       {/* State & Country */}
       <div className="grid grid-cols-2 gap-4 ">
@@ -112,9 +158,9 @@ export default function PersonalInfo2({ data, setData, next,back }) {
 
 
           {
-            !data.gender || !data.date_of_birth 
-            ||!data.next_of_kin_phone_number 
-            || !data.next_of_kin ||!data.occupation ?
+            data.gender || data.date_of_birth 
+            ||data.next_of_kin_phone_number 
+            || data.next_of_kin ||data.occupation ?
             <h1>Fill the complete form</h1>:
              <button
           onClick={next}

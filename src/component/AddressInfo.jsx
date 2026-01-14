@@ -77,9 +77,9 @@ export default function AddressInfo({ data, setData, next, back }) {
         </button>
 
          {
-            !data.country_of_origin || !data.state
-            ||!data.country
-            || !data.address ?
+            data.country_of_origin || data.state
+            ||data.country
+            || data.address ?
             <h1>Fill the complete form</h1>:
              <button
           onClick={next}
